@@ -1,20 +1,31 @@
 <script setup>
+import { useStore } from "vuex";
 defineProps({
   msg: {
     type: String,
     required: true,
   },
-})
+});
+
+const myStore = useStore();
+
+const incrementCount = () => {
+  myStore.dispatch("a/increaseAction", 5);
+};
+const decrementCount = () => {
+  myStore.dispatch("a/decrementAction", 5);
+};
 </script>
 
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      Tôi không coi nó là mục tiêu cuối cùng nhưng tôi coi nó là một người bạn
+      công nghệ cùng tôi trên con đường tình yêu lớn
     </h3>
+    <button @click="incrementCount">Bấm nút để tăng số lượng</button>
+    <button @click="decrementCount">Bấm nút để giảm số lượng</button>
   </div>
 </template>
 

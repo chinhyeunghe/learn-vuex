@@ -1,6 +1,14 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import {computed} from 'vue'
+import {useStore} from 'vuex'
+
+const myStore = useStore()
+
+const myName = computed(() => myStore.getters['a/getName']);
+const myCount = computed(() => myStore.getters['a/getCount']);
+
 </script>
 
 <template>
@@ -8,8 +16,10 @@ import TheWelcome from './components/TheWelcome.vue'
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+      <HelloWorld :msg="myName" />
+      <h3><strong>{{ myCount }}</strong></h3>
+      
+    </div>  
   </header>
 
   <main>
